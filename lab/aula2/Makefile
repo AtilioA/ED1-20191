@@ -8,7 +8,7 @@
 #-lm obrigatorio caso utilize a biblioteca math.h
 
 CC=gcc
-CFLAGS=-I. -w -g -lm
+CFLAGS=-I. -Wall -g -lm
 DEPS = matriz.h
 OBJ = matriz.o progmat.o
 
@@ -19,7 +19,7 @@ matriz: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 run:
-	./a.out
+	matriz
 
 val:
 	valgrind --leak-check=full -v ./matriz

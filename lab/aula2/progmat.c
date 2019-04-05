@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "matriz.h"
 
-//definindo constantes para o número de linhas e colunas da matriz
+// Definindo constantes para o número de linhas e colunas da matriz
 #define NLINHAS 4
 #define NCOLUNAS 4
 
@@ -15,34 +15,40 @@ int main()
 	int i, j;
 	tMatriz *mat;
 
-	// chamando a função do TAD tMatriz que inicializa a matriz
+	// Chamando a função do TAD tMatriz que inicializa a matriz
 	mat = inicializaMatriz(NLINHAS, NCOLUNAS);
-	//preenchendo a matriz com valores para teste
+
+	// Preenchendo a matriz com valores para teste
 	for (i = 0; i < NLINHAS; i++)
+    {
 		for (j = 0; j < NCOLUNAS; j++)
-			//chamando a funcao do TAD matriz para modificar um dado elemento da matriz
+        {
+			// Chamando a função do TAD matriz para modificar um dado elemento da matriz
 			modificaElemento(mat, i, j, i + j);
+        }
+    }
 
-	//chamando a funcao do TAD matriz para imprimir os elementos da matriz
-	imprimetMatriz(mat);
+	// Chamando a função do TAD matriz para imprimir os elementos da matriz
+	imprimeMatriz(mat);
 
-	//chamando a fun��o do TAD para gerar a matriz transposta
-	tMatriz *trp = transposta(mat);
-	printf("A matriz transposta eh: \n");
-	imprimetMatriz(trp);
+	// Chamando a função do TAD para gerar a matriz transposta
+	tMatriz *trp;
+    trp = transposta(mat);
+	printf("A matriz transposta eh:\n");
+	imprimeMatriz(trp);
 
-/*
-	//chamando a fun��o do TAD para gerar a matriz multiplicacao
+	// Chamando a função do TAD para gerar a matriz multiplicação
 	tMatriz *mlt = multiplicacao(mat, trp);
 	printf("A matriz multiplicacao eh: \n");
-	imprimetMatriz(mlt);
+	imprimeMatriz(mlt);
+
 	printf("A matriz girada 90o eh: \n");
-	giratMatriz(mlt);
-	imprimetMatriz(mlt);
+	giraMatriz(mlt);
+	// imprimeMatriz(mlt);
 
-	destroitMatriz(trp);
-	destroitMatriz(mlt);
-*/
-	destroitMatriz(mat);
+	destroiMatriz(mlt);
+	destroiMatriz(trp);
+	destroiMatriz(mat);
 
+    return 0;
 }
