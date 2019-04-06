@@ -110,7 +110,7 @@ int recuperaNColunas(tMatriz *mat)
         return 0;
     }
 
-    return mat->nColunas;
+    return mat->nColunas + 1;
 }
 
 /* Complexidade da função: (n = linhas, m = colunas)
@@ -129,7 +129,7 @@ int recuperaNLinhas(tMatriz *mat)
         return 0;
     }
 
-    return mat->nLinhas;
+    return mat->nLinhas + 1;
 }
 
 /* Complexidade da função: (n = linhas, m = colunas)
@@ -283,5 +283,21 @@ void giraMatriz(tMatriz *mat)
         exit(1);
     }
 
-    printf("Misteriosa\n");
+    int i = 0, j = 0, aux = 0;
+
+    for (i = 0; i < mat->nLinhas / 2; i++)
+    {
+        for (j = i; j < mat->nLinhas - 1 - i; j++)
+        {
+            aux = mat->elementos[i][j];
+
+            mat->elementos[i][j] = mat->elementos[mat->nLinhas - 1 - j][i];
+
+            mat->elementos[(mat->nLinhas - 1 - j)][i] = mat->elementos[(mat->nLinhas - 1 - i)][(mat->nLinhas - 1 - j)];
+
+            mat->elementos[(mat->nLinhas - 1 - i)][(mat->nLinhas - 1 - j)] = mat->elementos[j][(mat->nLinhas - 1 - i)];
+
+            mat->elementos[j][(mat->nLinhas - 1 - i)] = aux;
+        }
+    }
 }

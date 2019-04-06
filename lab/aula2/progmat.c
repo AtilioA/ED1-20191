@@ -7,8 +7,8 @@
 #include "matriz.h"
 
 // Definindo constantes para o número de linhas e colunas da matriz
-#define NLINHAS 4
-#define NCOLUNAS 4
+#define NLINHAS 3
+#define NCOLUNAS 3
 
 int main()
 {
@@ -44,7 +44,7 @@ int main()
 
 	printf("A matriz girada 90o eh: \n");
 	giraMatriz(mlt);
-	// imprimeMatriz(mlt);
+	imprimeMatriz(mlt);
 
 	destroiMatriz(mlt);
 	destroiMatriz(trp);
