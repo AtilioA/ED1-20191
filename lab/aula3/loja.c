@@ -15,7 +15,7 @@ int codigoRepetido(TipoLista *lista, produto x)
 {
     int i = 0;
 
-    for (i = lista->primeiro - 1; i < lista->ultimo; i++)
+    for (i = lista->primeiro - 1; i < lista->ultimo - 1; i++)
     {
         if (x.codigo == lista->itens[i].codigo)
         {
@@ -30,7 +30,7 @@ int codigoRepetidoIndice(TipoLista *lista, produto x)
 {
     int i = 0;
 
-    for (i = lista->primeiro - 1; i < lista->ultimo; i++)
+    for (i = lista->primeiro - 1; i < lista->ultimo - 1; i++)
     {
         if (x.codigo == lista->itens[i].codigo)
         {
@@ -63,7 +63,7 @@ void Insere(produto x, TipoLista *lista)
     }
     else
     {
-        printf("Item ja existe!\n");
+        printf("Codigo ja existente!\n");
     }
 }
 
@@ -92,40 +92,69 @@ produto CriarProduto()
     return nossoProdutoLindo;
 }
 
-void ImprimeProduto(produto *produto)
+void ImprimeProduto(produto produto)
 {
-    printf("Codigo do produto: %i.\n", produto->codigo);
-    printf("Nome do produto: %s.\n", produto->nome);
-    printf("Codigo do produto: %f.\n", produto->preco);
-    printf("Quantidade do produto: %i.\n", produto->qtd);
+    printf("Codigo do produto: %i.\n", produto.codigo);
+    printf("Nome do produto: %s", produto.nome); // string do fgets possui \n
+    printf("Preco do produto: %g.\n", produto.preco);
+    printf("Quantidade do produto: %i.\n", produto.qtd);
 }
 
-void Retira(produto x, TipoLista *lista, produto *ItemRecuperado)
+int Retira(int codigo, TipoLista *lista, produto *itemRetirado)
 {
-    if (lista)
-
-
-    if (x.qtd > 0)
+    if (lista->ultimo == lista->primeiro)
     {
-        printf("Produto em estoque não pode ser removido.\n");
+        printf("A lista esta vazia!");
+        return 0;
     }
 
-    int codigoBuscado = x.codigo;
-    int indiceCodigo = codigoRepetidoIndice(lista, x);
+    int indiceCodigo = buscaIndiceCodigo(lista, codigo);
 
-    *ItemRecuperado = lista->itens[indiceCodigo];
+    *itemRetirado = lista->itens[indiceCodigo];
+    if (itemRetirado->qtd > 0)
+    {
+        printf("\nProduto em estoque nao pode ser removido!\n");
+        return 0;
+    }
+
     lista->ultimo--;
 
     for (int i = indiceCodigo; i < lista->ultimo; i++)
     {
         lista->itens[i] = lista->itens[i + 1];
     }
+
+    return 1;
+}
+
+int Retira2(produto x, TipoLista *lista, produto *itemRetirado)
+{
+    if (lista)
+
+        if (x.qtd > 0)
+        {
+            printf("Produto em estoque nao pode ser removido!\n");
+            return 0;
+        }
+
+    int indiceCodigo = codigoRepetidoIndice(lista, x);
+
+    *itemRetirado = lista->itens[indiceCodigo];
+    lista->ultimo--;
+
+    for (int i = indiceCodigo; i < lista->ultimo; i++)
+    {
+        lista->itens[i] = lista->itens[i + 1];
+    }
+
+    return 1;
 }
 
 produto Recupera(Posicao p, TipoLista *lista)
 {
     if (estaVazia(*lista))
     {
+        printf("Lista vazia!\n");
         return;
     }
 
@@ -133,13 +162,26 @@ produto Recupera(Posicao p, TipoLista *lista)
     return itemRecuperado;
 }
 
-void Imprime(TipoLista Lista)
+void ImprimeCodigos(TipoLista Lista)
 {
     int i = 0;
 
     for (i = Lista.primeiro - 1; i <= (Lista.ultimo - 2); i++)
     {
         printf("%d\n", Lista.itens[i].codigo);
+    }
+}
+
+void ImprimeLista(TipoLista Lista)
+{
+    int i = 0;
+
+    for (i = Lista.primeiro - 1; i <= (Lista.ultimo - 2); i++)
+    {
+        printf("Codigo do produto: %d\n", Lista.itens[i].codigo);
+        printf("Nome do produto: %s", Lista.itens[i].nome);
+        printf("Preco do produto: %g.\n", Lista.itens[i].preco);
+        printf("Quantidade do produto: %i.\n\n", Lista.itens[i].qtd);
     }
 }
 
@@ -153,37 +195,64 @@ int Quantidade(TipoLista Lista)
     return Lista.ultimo - 1;
 }
 
-void copiaLista(TipoLista *ListaOrigem, TipoLista *ListaDestino)
+int buscaIndiceCodigo(TipoLista *lista, int codigo)
 {
-    // if (Vazia(*ListaOrigem))
-    // {
-    //     printf("Erro! Lista de origem vazia.\n");
-    //     return;
-    // }
+    int i = 0;
 
-    // FLVazia(ListaDestino);
+    for (i = lista->primeiro - 1; i < lista->ultimo - 1; i++)
+    {
+        if (codigo == lista->itens[i].codigo)
+        {
+            return i;
+        }
+    }
 
-    // // ( int p = ListaOrigem->Primeiro-1; p < ListaOrigem->Ultimo-1; p++)
-    // for (int i = 0; i < Quantidade(*ListaOrigem); i++)
-    // {
-    //     Insere(Recupera(i, ListaOrigem), ListaDestino);
-    // }
+    return -1;
+}
+
+// Retorna um produto na lista com um código de entrada, se este código existir na lista
+produto buscaProdutoCodigo(TipoLista *lista, int codigo)
+{
+    int indiceProduto = buscaIndiceCodigo(lista, codigo);
+    produto produtoBuscado;
+
+    if (indiceProduto >= 0)
+    {
+        produtoBuscado = lista->itens[indiceProduto];
+        return produtoBuscado;
+    }
+    else
+    {
+        printf("Nenhum produto na lista possui o codigo fornecido.\n");
+        return;
+    }
+}
+
+int indiceMaisBarato(TipoLista *lista)
+{
+    int i = lista->primeiro - 1, indiceMaisBarato = 0;
+
+    float menorPreco = lista->itens[lista->primeiro - 1].preco;
+
+    for (i = lista->primeiro; i < lista->ultimo - 1; i++)
+    {
+        if (lista->itens[i].preco < menorPreco)
+        {
+            menorPreco = lista->itens[i].preco;
+            indiceMaisBarato = i;
+        }
+    }
+
+    return indiceMaisBarato;
 }
 
 produto maisBarato(TipoLista *lista)
 {
-    int i = lista->primeiro - 1;
-
     produto maisBarato;
-    maisBarato.preco = lista->itens[lista->primeiro - 1].preco;
 
-    for (i = lista->primeiro - 1; i < lista->ultimo; i++)
-    {
-        if (lista->itens[i].preco < maisBarato.preco)
-        {
-            maisBarato.preco = lista->itens[i].preco;
-        }
-    }
+    int maisBaratoIndice = indiceMaisBarato(lista);
+
+    maisBarato = lista->itens[maisBaratoIndice];
 
     return maisBarato;
 }

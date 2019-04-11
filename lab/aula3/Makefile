@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -lm
+CFLAGS=-I. -Wall -lm
 DEPS = loja.h
 OBJ = teste.o loja.o
 
