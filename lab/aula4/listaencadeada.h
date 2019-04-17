@@ -1,42 +1,47 @@
 // Guard para evitar dupla inclusão
-#ifndef __BARALHO_H
-#define __BARALHO_H
+#ifndef __LISTAENCADEADA_H
+#define __LISTAENCADEADA_H
 
-#include "Jogo.h"
-
-// Estrutura de dados que abstrai uma carta, que possui valor e naipe
-typedef struct
+typedef struct tProduto
 {
-    int chave;
-    char valor;
-    char naipe;
-} tCarta;
+  int codigo;
+  char *nome;
+  float preco;
+  int qtd;
+} tProduto;
 
-// typedef struct tCelula *tApontador;
-
-// Lista encadeada que abstrai um conjunto de cartas
 typedef struct tCelula
 {
-    tCarta carta;
-    tCelula *prox;
+    tProduto produto;
+    struct tCelula *prox;
 } tCelula;
 
-typedef struct
+typedef struct tLista
 {
     tCelula *primeiro, *ultimo;
 } tLista;
 
 // Faz a lista ficar vazia
-void FLVazia(tLista *Lista);
+void FLVazia(tLista *lista);
 
 // Verifica se a lista está vazia
-int estaVazia(tLista Lista);
+int estaVazia(tLista *lista);
 
-// Insere uma carta na lista
-void insere(tCarta x, tLista *Lista);
+// Insere um produto na lista
+void insere(tProduto x, tLista *lista);
 
-// Retira uma carta da lista e retorna o elemento por referência
-void retira(tCelula *p, tLista *Lista, tCarta *Carta);
+// Retira um produto da lista e retorna o elemento por referência
+void retira(int cod, tLista *lista, tProduto *produto);
 
-// Imprime as cartas da lista
-void imprimeLista(tLista Lista);
+void destroiLista(tLista *lista);
+
+// Imprime os produtos da lista
+void imprimeLista(tLista *lista);
+
+void imprimeProduto(tProduto produto);
+
+tProduto maisBarato(tLista *lista);
+
+tProduto criaProduto(int cod, char *nome, int qtd, float preco);
+
+#endif
