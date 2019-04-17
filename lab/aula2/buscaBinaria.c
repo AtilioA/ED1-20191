@@ -1,3 +1,4 @@
+// com vetor estático
 // isso ta bem errado rsrs
 
 #include <stdio.h>
