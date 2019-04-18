@@ -35,6 +35,8 @@ int main()
     retira(1, &lista, &item);
     printf("\nRetirando item de codigo 5...\n");
     retira(5, &lista, &item);
+    printf("\nRetirando item de codigo 6...\n");
+    retira(6, &lista, &item);
 
     printf("\nLista apos remover itens:\n");
     imprimeLista(&lista);

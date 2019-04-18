@@ -33,6 +33,7 @@ int codigoExistente(int codigo, tLista *lista)
             return 1;
         }
     }
+
     return 0;
 }
 
@@ -131,7 +132,7 @@ void imprimeProduto(tProduto produto)
 
 void destroiLista(tLista *lista)
 {
-    tCelula *aux = lista->primeiro->prox;
+    tCelula *aux = lista->primeiro;
     tCelula *aux2 = NULL;
 
     while (aux != NULL)
@@ -174,6 +175,5 @@ tProduto maisBarato(tLista *lista)
         aux = aux->prox;
     }
 
-    // free(aux);
     return produtomaisBarato;
 }
