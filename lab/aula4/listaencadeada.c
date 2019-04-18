@@ -4,7 +4,7 @@
 
 void FLVazia(tLista *lista)
 {
-    lista->primeiro = (tLista *)malloc(sizeof(tCelula));
+    lista->primeiro = (tCelula *)malloc(sizeof(tCelula)); // lista->primeiro será a cabeça da lista
     lista->ultimo = lista->primeiro;
     lista->ultimo->prox = NULL;
 }
@@ -22,20 +22,45 @@ int estaVazia(tLista *lista)
     }
 }
 
+int codigoExistente(int codigo, tLista *lista)
+{
+    tCelula *aux;
+
+    for (aux = lista->primeiro->prox; aux != NULL; aux = aux->prox)
+    {
+        if (codigo == aux->produto.codigo)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void insere(tProduto x, tLista *lista)
 {
-    lista->ultimo->prox = (tCelula *)malloc(sizeof(tCelula));
-    lista->ultimo = lista->ultimo->prox;
-    lista->ultimo->produto = x;
-    lista->ultimo->prox == NULL;
+    if (codigoExistente(x.codigo, lista))
+    {
+        printf("\nErro ao inserir o seguinte produto:\n");
+        imprimeProduto(x);
+        printf("Codigo ja existente\n\n");
+        return;
+    }
+
+    else
+    {
+        lista->ultimo->prox = (tCelula *)malloc(sizeof(tCelula));
+        lista->ultimo = lista->ultimo->prox;
+        lista->ultimo->produto = x;
+        lista->ultimo->prox = NULL;
+    }
 }
 
 void retira(int cod, tLista *lista, tProduto *produto)
 {
     tCelula *anterior = NULL;
-    tCelula *atual = lista->primeiro->prox;
+    tCelula *atual = lista->primeiro;
 
-    while(atual != NULL && cod != atual->produto.codigo)
+    while (atual != NULL && cod != atual->produto.codigo)
     {
         anterior = atual;
         atual = atual->prox;
@@ -47,9 +72,16 @@ void retira(int cod, tLista *lista, tProduto *produto)
         return;
     }
 
-    anterior->prox = atual->prox;
-    *produto = atual->produto;
-    free(atual);
+    if (atual->produto.qtd == 0)
+    {
+        anterior->prox = atual->prox;
+        *produto = atual->produto;
+        free(atual);
+    }
+    else
+    {
+        printf("Produto em estoque nao pode ser removido!\n");
+    }
 }
 
 int quantidadeLista(tLista *lista)
@@ -57,9 +89,8 @@ int quantidadeLista(tLista *lista)
     int quantidade = 0;
 
     tCelula *aux = NULL;
-    aux = lista->primeiro;
 
-    for (aux; aux != NULL; aux = aux->prox)
+    for (aux = lista->primeiro->prox; aux != NULL; aux = aux->prox)
     {
         quantidade++;
     }
@@ -70,10 +101,9 @@ int quantidadeLista(tLista *lista)
 void imprimeLista(tLista *lista)
 {
     tCelula *aux = NULL;
-    aux = lista->primeiro->prox;
 
     // Percorre a lista até chegar em NULL
-    for (aux; aux != NULL; aux = aux->prox)
+    for (aux = lista->primeiro->prox; aux != NULL; aux = aux->prox)
     {
         imprimeProduto(aux->produto);
     }
@@ -101,10 +131,10 @@ void imprimeProduto(tProduto produto)
 
 void destroiLista(tLista *lista)
 {
-    tCelula *aux = lista->primeiro;
+    tCelula *aux = lista->primeiro->prox;
     tCelula *aux2 = NULL;
 
-    while(aux != NULL)
+    while (aux != NULL)
     {
         aux2 = aux;
         aux = aux->prox;
@@ -112,22 +142,38 @@ void destroiLista(tLista *lista)
     }
 }
 
+tProduto buscaCodigo(tLista *lista, int codigo)
+{
+    tCelula *aux = lista->primeiro->prox;
+
+    for (aux = lista->primeiro->prox; aux != NULL; aux = aux->prox)
+    {
+        if (codigo == aux->produto.codigo)
+        {
+            return aux->produto;
+        }
+    }
+
+    printf("Nao ha produto com este codigo.\n");
+    return;
+}
+
 tProduto maisBarato(tLista *lista)
 {
-    tProduto socorro = lista->primeiro->produto;
+    tProduto produtomaisBarato = lista->primeiro->prox->produto;
 
     tCelula *aux = lista->primeiro->prox;
 
-    while(aux != NULL)
+    while (aux != NULL)
     {
-        if ((aux->produto.preco) < (socorro.preco))
+        if ((aux->produto.preco) < (produtomaisBarato.preco))
         {
-            socorro = aux->produto;
+            produtomaisBarato = aux->produto;
         }
 
         aux = aux->prox;
     }
 
     // free(aux);
-    return socorro;
+    return produtomaisBarato;
 }

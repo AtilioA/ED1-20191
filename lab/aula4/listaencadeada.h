@@ -4,10 +4,10 @@
 
 typedef struct tProduto
 {
-  int codigo;
-  char *nome;
-  float preco;
-  int qtd;
+    int codigo;
+    char *nome;
+    float preco;
+    int qtd;
 } tProduto;
 
 typedef struct tCelula
@@ -33,15 +33,21 @@ void insere(tProduto x, tLista *lista);
 // Retira um produto da lista e retorna o elemento por referência
 void retira(int cod, tLista *lista, tProduto *produto);
 
+int quantidadeLista(tLista *lista);
+
 void destroiLista(tLista *lista);
+
+tProduto criaProduto(int cod, char *nome, int qtd, float preco);
+
 
 // Imprime os produtos da lista
 void imprimeLista(tLista *lista);
 
 void imprimeProduto(tProduto produto);
 
-tProduto maisBarato(tLista *lista);
+tProduto buscaCodigo(tLista *lista, int codigo);
 
-tProduto criaProduto(int cod, char *nome, int qtd, float preco);
+tProduto maisBarato(tLista *lista);
+tProduto maisBarato2(tLista *lista);
 
 #endif

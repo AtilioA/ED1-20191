@@ -9,9 +9,9 @@ int main()
     tProduto item;
 
     FLVazia(&lista);
-    printf("Lista vazia criada com sucesso.\n");
+    printf("Lista vazia criada com sucesso!\n");
 
-    printf("Inserindo itens:\n");
+    printf("Inserindo itens...\n");
     item = criaProduto(1,"Sabonete", 10, 3.90);
     insere(item, &lista);
     item = criaProduto(2,"Arroz", 20, 13.90);
@@ -22,15 +22,27 @@ int main()
     insere(item, &lista);
     item = criaProduto(5,"Uva", 5, 8);
     insere(item, &lista);
+    item = criaProduto(3,"Beterraba", 28, 32);
+    insere(item, &lista);
+
+    printf("Quantidade de produtos: %i\n", quantidadeLista(&lista));
+    printf("Imprimindo a lista:\n");
     imprimeLista(&lista);
 
-    printf("\nRetirando item de codigo 4:\n");
+    printf("\nRetirando item de codigo 4...\n");
     retira(4, &lista, &item);
+    printf("\nRetirando item de codigo 1...\n");
+    retira(1, &lista, &item);
+    printf("\nRetirando item de codigo 5...\n");
+    retira(5, &lista, &item);
 
+    printf("\nLista apos remover itens:\n");
     imprimeLista(&lista);
 
-    // tCelula *p = BuscaCodigo(3, &lista);
-    // ImprimeProduto(p->Item);
+    printf("\nBuscando produto de codigo 3:\n");
+    tProduto p = buscaCodigo(&lista, 3);
+    imprimeProduto(p);
+
     printf("\nProduto mais barato:\n");
     tProduto barato = maisBarato(&lista);
     imprimeProduto(barato);
