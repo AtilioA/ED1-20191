@@ -4,7 +4,6 @@
 
 int main()
 {
-
     tLista lista;
     tProduto item;
 
@@ -25,7 +24,6 @@ int main()
     item = criaProduto(3,"Beterraba", 28, 32);
     insere(item, &lista);
 
-    printf("Quantidade de produtos: %i\n", quantidadeLista(&lista));
     printf("Imprimindo a lista:\n");
     imprimeLista(&lista);
 
@@ -42,14 +40,23 @@ int main()
     imprimeLista(&lista);
 
     printf("\nBuscando produto de codigo 3:\n");
-    tProduto p = buscaCodigo(&lista, 3);
-    imprimeProduto(p);
+    tProduto p1 = buscaCodigo(&lista, 3);
+    imprimeProduto(p1);
+    // Produto 4 foi removido
+    printf("\nBuscando produto de codigo 4:\n");
+    tProduto p2 = buscaCodigo(&lista, 4);
+    imprimeProduto(p2);
+    printf("\nBuscando produto de codigo 7:\n");
+    tProduto p3 = buscaCodigo(&lista, 7);
+    imprimeProduto(p3);
 
     printf("\nProduto mais barato:\n");
     tProduto barato = maisBarato(&lista);
     imprimeProduto(barato);
 
+    printf("\n\n");
     destroiLista(&lista);
+    printf("Lista destruida com sucesso!\n");
 
     return 0;
 }
