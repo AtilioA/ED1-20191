@@ -59,7 +59,7 @@ void insere(tProduto x, tLista *lista)
 void retira(int cod, tLista *lista, tProduto *produto)
 {
     tCelula *anterior = NULL;
-    tCelula *atual = lista->primeiro; // lista->primeiro->atual
+    tCelula *atual = lista->primeiro; // lista->primeiro->prox
 
     while (atual != NULL && cod != atual->produto.codigo)
     {
