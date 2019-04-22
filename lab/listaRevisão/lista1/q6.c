@@ -1,7 +1,8 @@
-/* 5 - Implemente uma função que, dada uma matriz de inteiros dinâmica, implementada com vetor de
-ponteiros, retorne uma matriz dinâmica representada por vetor simples, contendo os mesmos
-elementos da matriz original: int* matriz (int m, int n, int** mat). Aloque todo espaço de memória
-necessário para alocar a matriz retorno; */
+/*
+6 - Implemente uma função que, dada uma matriz de inteiros dinâmica, implementada com vetor
+simples, retorne uma matriz dinâmica representada por vetor de ponteiros, contendo os mesmos
+elementos da matriz original: int** matriz (int m, int n, int* mat);
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +13,8 @@ typedef struct
     int colunas;
     int **elementos;
 } tMatriz;
+
+// Trocar funções
 
 int *matrizParaVetor(tMatriz matriz, int *tamanhoVetor)
 {
