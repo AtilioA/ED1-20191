@@ -16,7 +16,7 @@ int main()
     ListaHet *lista = cria();
 
     //tenta retirar com lista vazia
-    // lista = retira_cliente(lista, 1);
+    lista = retira_cliente(lista, 1);
 
     // criando alguns alunos apenas para testar (mais adequado seria carregar de um arquivo)
     Cliente *maria = cria_cliente("maria", 1);
@@ -26,40 +26,51 @@ int main()
     Movel *carro_sofia = cria_movel(2784, 2011, 25000);
     Movel *carro1_jose = cria_movel(3784, 2009, 12000);
     Movel *carro_maria = cria_movel(1852, 2000, 9000);
-    // Movel *carro2_jose = cria_movel(3785, 2011, 20000);
-    // Imovel *casa_sofia = cria_imovel(222, 1984, 500000);
-    // Imovel *casa_jose = cria_imovel(333, 1978, 600000);
+    Movel *carro2_jose = cria_movel(3785, 2011, 20000);
+    Imovel *casa_sofia = cria_imovel(222, 1984, 500000);
+    Imovel *casa_jose = cria_imovel(333, 1978, 600000);
 
     // inserindo elementos na lista
     lista = insere_movel(lista, sofia, carro_sofia);
     lista = insere_movel(lista, jose, carro1_jose);
     lista = insere_movel(lista, maria, carro_maria);
-    // lista = insere_movel(lista, jose, carro2_jose);
-    // lista = insere_imovel(lista, sofia, casa_sofia);
-    // lista = insere_imovel(lista, jose, casa_jose);
+    lista = insere_movel(lista, jose, carro2_jose);
+    lista = insere_imovel(lista, sofia, casa_sofia);
+    lista = insere_imovel(lista, jose, casa_jose);
 
     imprime(lista);
     destroiLista(lista);
-    // imprime(lista);
+    libera_cliente(maria);
+    libera_cliente(jose);
+    libera_cliente(sofia);
+
+    free(carro_sofia);
+    free(carro1_jose);
+    free(carro_maria);
+    free(carro2_jose);
+    free(casa_sofia);
+    free(casa_jose);
+
+    imprime(lista);
 
     // float valor_assegurado_jose = calcula_valor_assegurado (lista, jose, 0.7, 0.25);
 
     // printf ("O valor assegurado de Jose eh: %f \n", valor_assegurado_jose);
 
-    // lista = retira_cliente (lista, 1);
+    lista = retira_cliente (lista, 1);
 
-    // printf ("Imprimindo a lista novamente \n");
+    printf ("Imprimindo a lista novamente \n");
 
-    // imprime (lista);
+    imprime (lista);
 
     // float valor_assegurado_sofia = calcula_valor_assegurado (lista, sofia, 0.7, 0.25);
 
     // printf ("O valor assegurado de sofia eh: %f \n", valor_assegurado_sofia);
 
-    // lista = retira_cliente (lista, 2);
+    lista = retira_cliente(lista, 2);
 
-    // printf ("Imprimindo a lista novamente \n");
-    // imprime (lista);
+    printf ("Imprimindo a lista novamente \n");
+    imprime (lista);
 
     printf("\n **** PARABENS!!! **** \n\n");
 }

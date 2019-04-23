@@ -1,3 +1,6 @@
+#include <stdlib.h>
+
+
 typedef struct cliente
 {
     char *nome;
@@ -100,3 +103,7 @@ ListaHet* retira_cliente (ListaHet* lista, int id_cliente);
 float calcula_valor_assegurado (ListaHet* lista, Cliente* dono, float taxa_movel, float taxa_imovel);
 
 void destroiLista(ListaHet *lista);
+
+void libera_cliente(Cliente *cleiton);
+
+ListaHet *retira_cleiton(ListaHet *lista, int id_cliente);

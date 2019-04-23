@@ -54,4 +54,3 @@ dkms.conf
 *.exe
 .vscode/
 *.zip
-Makefile*
