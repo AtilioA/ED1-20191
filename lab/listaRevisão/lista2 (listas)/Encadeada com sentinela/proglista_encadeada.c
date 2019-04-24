@@ -4,8 +4,9 @@ Baseado na implementa��o do livro Projeto de Algoritmos
 Modifica��es: VM
 ========================================================================== */
 #include <sys/time.h>
-
-#include "listaencadeada.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "lista.h"
 
 #define MAX 10
 /* ========================================================================== */
@@ -14,10 +15,10 @@ Modifica��es: VM
 int main(int argc, char *argv[])
 { struct timeval t;
 
-  TipoLista lista;
-  TipoItem item;
+  tLista lista;
+  tItem item;
   int vetor[MAX];
-  TipoCelula *p;
+  tCelula *p;
   int i, j, k, n;
   float  tamanho=0;
   gettimeofday(&t,NULL);
@@ -34,25 +35,26 @@ int main(int argc, char *argv[])
       vetor[k] = vetor[j];
       vetor[j] = n;
     }
-  /*Insere cada chave na lista */
+  /*insere cada chave na lista */
   for (i = 0; i < MAX; i++)
-    { item.Chave = vetor[i];
-      Insere(item, &lista);
+    { item.chave = vetor[i];
+      insere(item, &lista);
       tamanho++;
-      printf("Inseriu: %d \n", item.Chave);
+      printf("Inseriu: %d \n", item.chave);
     }
-  Imprime(lista);
+  imprime(lista);
 
   /*Retira cada chave da lista */
-  for(i = 0; i < MAX; i++)
+  for(i = 0; i < MAX - 1; i++)
     { /*escolhe uma chave aleatoriamente */
       k = (int) ((tamanho) * rand() / (RAND_MAX + 1.0));
-      p = lista.Primeiro;
+      p = lista.primeiro;
       /*retira chave apontada */
-      Retira(p, &lista, &item);
+      retira(p, &lista, &item);
       tamanho--;
-      printf("Retirou: %d\n", item.Chave);
+      printf("Retirou: %d\n", item.chave);
     }
-  Imprime (lista);
+  imprime (lista);
+  destroiLista(&lista);
   return(0);
 }
