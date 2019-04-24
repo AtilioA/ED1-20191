@@ -1,38 +1,4 @@
-typedef struct cliente
-{
-    char *nome;
-    int id;
-} Cliente;
-
-typedef struct movel
-{
-    int placa;
-    int ano;
-    float valor;
-} Movel;
-
-typedef struct imovel
-{
-    int identificador;
-    int ano;
-    float valor;
-} Imovel;
-
-typedef struct listahet
-{
-    Cliente *dono;
-    int id;
-    void *item;
-    struct listahet *prox;
-} ListaHet;
-
-/*Cria lista vazia
-* inputs: nenhum
-* output: lista vazia
-* pre-condicao: nenhuma
-* pos-condicao: lista criada e vazia
-*/
-ListaHet* cria ();
+ListaHet* cria();
 
 /*Cria uma estrutura do tipo Cliente
 * inputs: nome do cliente e o identificador do cliente
@@ -99,4 +65,6 @@ ListaHet* retira_cliente (ListaHet* lista, int id_cliente);
 */
 float calcula_valor_assegurado (ListaHet* lista, Cliente* dono, float taxa_movel, float taxa_imovel);
 
+void freeDono(Cliente *cliente);
+void freeCelula(ListaHet *lista);
 void destroiLista(ListaHet *lista);
