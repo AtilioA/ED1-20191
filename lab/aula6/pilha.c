@@ -55,15 +55,13 @@ void imprimePilha(tPilha *pilha)
 
 tPessoa *pop(tPilha *pilha)
 {
-    tPessoa *fodase = NULL;
-
     if (pilha != NULL)
     {
         pilha->topo--;
         return pilha->stack[pilha->topo];
     }
 
-    return fodase;
+    return NULL;
 }
 
 void push(tPessoa *pessoa, tPilha *pilha)

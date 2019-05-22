@@ -50,6 +50,10 @@ int main()
     imprimePilha(p2);
 
     // Retira pessoa da pilha p e coloca na pilha p2
+    printf("eh isto\n");
+    // tPessoa *teste = pop(p);
+    // teste = pop(p);
+    // imprimePessoa(teste);
     push(pop(p), p2);
 
     // imprimePilha(p);
