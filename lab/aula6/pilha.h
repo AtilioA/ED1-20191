@@ -41,16 +41,17 @@ void push(tPessoa *pessoa, tPilha *pilha);
 tPessoa *pop(tPilha *pilha);
 
 
+void imprimePessoa(tPessoa *pessoa);
 /*Imprime as pessoas da pilha
  * inputs: a pilha
  * output: nenhum
  * pre-condicao: pilha P n�o vazia
  * pos-condicao: Pilha permanece inalterada
  */
-void imprimePessoa(tPessoa *pessoa);
 void imprimePilha(tPilha *pilha);
 
 
+void liberaPessoa(tPessoa *pessoa);
 /*Libera a memoria ocupada pela pilha
 * inputs: a Pilha
 * output: NULL

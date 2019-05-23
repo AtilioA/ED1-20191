@@ -15,7 +15,12 @@ tPilha *criaPilha()
 
 char *getNome(tPessoa *pessoa)
 {
-    return pessoa->nome;
+    if (pessoa != NULL)
+    {
+        return pessoa->nome;
+    }
+
+    return NULL;
 }
 
 int getIdade(tPessoa *pessoa)
@@ -37,19 +42,23 @@ void imprimePessoa(tPessoa *pessoa)
 {
     printf("Nome: %s\n", getNome(pessoa));
     printf("Idade: %i\n", getIdade(pessoa));
-    printf("Endereco: %s\n", getEnd(pessoa));
+    printf("Endereco: %s\n\n", getEnd(pessoa));
 }
 
 void imprimePilha(tPilha *pilha)
 {
-    int i;
+    int i = 0;
 
-    if (pilha != NULL && getTopo(pilha) != 0)
+    if (pilha != NULL && getTopo(pilha) > 0)
     {
-        for (i = 1; i < getTopo(pilha); i++)
+        for (i = getTopo(pilha) - 1; i >= 0; i--)
         {
             imprimePessoa(pilha->stack[i]);
         }
+    }
+    else
+    {
+        printf("Pilha invalida/vazia\n");
     }
 }
 
@@ -82,29 +91,29 @@ void push(tPessoa *pessoa, tPilha *pilha)
 
 void liberaPessoa(tPessoa *pessoa)
 {
-    free(pessoa->nome);
-    pessoa->idade = -1;
-    free(pessoa->endereco);
+    if (pessoa != NULL)
+    {
+        free(pessoa->nome);
+        pessoa->idade = -1;
+        free(pessoa->endereco);
+    }
 }
 
 void destroiPilha(tPilha *pilha)
 {
     int i;
 
-    for (i = 0; i > getTopo(pilha); i++)
+    if (pilha != NULL)
     {
-        liberaPessoa(pilha->stack[i]);
-        free(pilha->stack[i]);
+        for (i = 0; i < getTopo(pilha); i++)
+        {
+            liberaPessoa(pilha->stack[i]);
+            free(pilha->stack[i]);
+        }
     }
     free(pilha);
 }
 
-/* Inicializa um TipoItem Pessoa
-* inputs: o nome, a idade e o endereco da pessoa
-* output: um ponteiro para o tipo item criado
-* pre-condicao: nome, idade e endereco validos
-* pos-condicao: tipo item criado, com os campos nome, idade e endereco copiados
-*/
 tPessoa *inicializaPessoa(char *nome, int idade, char *endereco)
 {
     tPessoa *renanM = (tPessoa *)malloc(sizeof(tPessoa));
@@ -112,10 +121,10 @@ tPessoa *inicializaPessoa(char *nome, int idade, char *endereco)
     renanM->nome = (char *)malloc(strlen(nome) * sizeof(char) + 1);
     strcpy(renanM->nome, nome);
 
-    renanM->idade = idade;
-
     renanM->endereco = (char *)malloc(strlen(endereco) * sizeof(char) + 1);
     strcpy(renanM->endereco, endereco);
+
+    renanM->idade = idade;
 
     return renanM;
 }
