@@ -14,5 +14,6 @@ run: pilhaEstatica
 
 val:
 	valgrind -v --leak-check=full ./pilhaEstatica
+	
 clean:
 	rm -f *.o
