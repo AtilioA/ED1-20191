@@ -1,0 +1,1 @@
+void add(tPilha *pilha);
