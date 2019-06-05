@@ -24,7 +24,7 @@ Fila* cria_fila(void);
 * output: nenhum
 * pre-condicao: pessoa e fila n�o s�o nulos
 * pos-condicao: fila cont�m a pessoa inserida na ultima posi��o*/
-void insere (Pessoa* pessoa, Fila* f);
+void insere (tCelula *celula, Fila* f);
 
 /*Retira uma pessoa da fila (usando FIFO). Imprime mensagem de erro caso a fila esteja vazia.
 * inputs: a fila

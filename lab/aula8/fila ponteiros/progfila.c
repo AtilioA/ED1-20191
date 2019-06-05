@@ -14,9 +14,9 @@ int main()
 {
      // criando a fila vazia
     Fila* f = cria_fila();
-
     // tentando imprimir a fila (ainda vazia neste momento)
     imprime_fila(f);
+    /*
 
      // criando algumas pessoas apenas para testar (mais adequado seria carregar de um arquivo)
     Pessoa* pessoa1= inicializaPessoa("pessoa1", 51, "rua da pessoa1");
@@ -47,57 +47,57 @@ int main()
     printf ("---------- Imprime fila-----------\n");
     //Imprime a fila com todas as pessoas
     imprime_fila(f);
+    */
+    // // Retira pessoa1 do inicio da fila
+    // Pessoa* retirado = retira (f);
+    // // Insere pessoa1 no final da fila
+    // insere (retirado, f);
+    // // Retira pessoa2 do inicio da fila
+    // retirado = retira (f);
+    // // Insere pessoa2 no final da fila
+    // insere (retirado, f);
+    // // Retira pessoa3 do inicio da fila
+    // retirado = retira (f);
+    // // Insere pessoa3 no final da fila
+    // insere (retirado, f);
 
-    // Retira pessoa1 do inicio da fila
-    Pessoa* retirado = retira (f);
-    // Insere pessoa1 no final da fila
-    insere (retirado, f);
-    // Retira pessoa2 do inicio da fila
-    retirado = retira (f);
-    // Insere pessoa2 no final da fila
-    insere (retirado, f);
-    // Retira pessoa3 do inicio da fila
-    retirado = retira (f);
-    // Insere pessoa3 no final da fila
-    insere (retirado, f);
+    // printf ("---------- Imprime fila-----------\n");
+    // //Imprime a fila com todas as pessoas
+    // imprime_fila(f);
 
-    printf ("---------- Imprime fila-----------\n");
-    //Imprime a fila com todas as pessoas
-    imprime_fila(f);
+    // // Retira pessoa4 do inicio da fila
+    // retirado = retira (f);
+    // // Insere pessoa4 no final da fila
+    // insere (retirado, f);
+    // // Retira pessoa5 do inicio da fila
+    // retirado = retira (f);
+    // // Insere pessoa5 no final da fila
+    // insere (retirado, f);
 
-    // Retira pessoa4 do inicio da fila
-    retirado = retira (f);
-    // Insere pessoa4 no final da fila
-    insere (retirado, f);
-    // Retira pessoa5 do inicio da fila
-    retirado = retira (f);
-    // Insere pessoa5 no final da fila
-    insere (retirado, f);
+    // printf ("---------- Imprime fila-----------\n");
+    // //Imprime a fila com todas as pessoas
+    // imprime_fila(f);
 
-    printf ("---------- Imprime fila-----------\n");
-    //Imprime a fila com todas as pessoas
-    imprime_fila(f);
+    // Fila* f_maiores = cria_fila();
+    // Fila* f_menores = cria_fila();
 
-    Fila* f_maiores = cria_fila();
-    Fila* f_menores = cria_fila();
+    // separa_filas(f, f_maiores, f_menores);
 
-    separa_filas(f, f_maiores, f_menores);
+    // printf ("---------- Imprime fila-----------\n");
+    // //Imprime a fila com todas as pessoas
+    // imprime_fila(f);
 
-    printf ("---------- Imprime fila-----------\n");
-    //Imprime a fila com todas as pessoas
-    imprime_fila(f);
+    // printf ("---------- Imprime fila Maiores-----------\n");
+    // //Imprime a fila com todas as pessoas maiores que 60
+    // imprime_fila(f_maiores);
 
-    printf ("---------- Imprime fila Maiores-----------\n");
-    //Imprime a fila com todas as pessoas maiores que 60
-    imprime_fila(f_maiores);
+    // printf ("---------- Imprime fila Menores-----------\n");
+    // //Imprime a fila com todas as pessoas menores que 60
+    // imprime_fila(f_menores);
 
-    printf ("---------- Imprime fila Menores-----------\n");
-    //Imprime a fila com todas as pessoas menores que 60
-    imprime_fila(f_menores);
-
-    //libera a mem�ria ocupada pela fila
-    f = destroi_fila(f);
-    f_maiores = destroi_fila(f_maiores);
-    f_menores = destroi_fila(f_menores);
-    destroi_pessoa(pessoa11);
+    // //libera a mem�ria ocupada pela fila
+    // f = destroi_fila(f);
+    // f_maiores = destroi_fila(f_maiores);
+    // f_menores = destroi_fila(f_menores);
+    // destroi_pessoa(pessoa11);
 }

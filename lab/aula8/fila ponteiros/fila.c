@@ -11,8 +11,8 @@ Fila* cria_fila()
     return nova;
 }
 
-void insere(Pessoa* pessoa, Fila *f){
-    push(pessoa, f->principal);
+void insere(tCelula* celula, Fila *f){
+    push(celula, f->principal);
 }
 
 Pessoa* retira (Fila* f)
@@ -37,6 +37,26 @@ Pessoa* retira (Fila* f)
     return NULL;
 }
 
+Fila* destroi_fila(Fila* fila){
+    if (fila != NULL)
+    {
+        destroi_pilha(fila->principal);
+        destroi_pilha(fila->aux);
+        free(fila);
+    }
+}
+
+int Vazia_fila(Fila *fila)
+{
+    return (fila->principal == NULL && fila->aux == NULL);
+}
+
+void imprime_fila(Fila *f)
+{
+    imprime_pilha(f->principal);
+}
+
+/*
 void separa_filas(Fila* f, Fila* f_maiores, Fila* f_menores)
 {
     if(f != NULL || f_maiores != NULL || f_menores != NULL)
@@ -58,22 +78,4 @@ void separa_filas(Fila* f, Fila* f_maiores, Fila* f_menores)
     }
 }
 
-
-Fila* destroi_fila(Fila* fila){
-    if (fila != NULL)
-    {
-        destroi_pilha(fila->principal);
-        destroi_pilha(fila->aux);
-        free(fila);
-    }
-}
-
-int Vazia_fila(Fila *fila)
-{
-    return (fila->principal == NULL && fila->aux == NULL);
-}
-
-void imprime_fila(Fila *f)
-{
-    imprime_pilha(f->principal);
-}
+*/

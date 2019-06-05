@@ -11,7 +11,6 @@
 #include "pilha.h"
 #include "fila.h"
 
-
 tCelula *criaCelula(float n)
 {
     tCelula *celula = (tCelula *)malloc(sizeof(tCelula));
@@ -27,33 +26,49 @@ tCelula *criaCelula(float n)
     return celula;
 }
 
+Pilha* cria_pilha()
+{
+    tPilha *nova = (tPilha *)malloc(sizeof(tPilha));
+
+    return nova;
+}
+
+
 void push(tCelula* celula, Pilha* pilha){
     celula->prox = pilha->topo;
     pilha->topo = celula;
     pilha->qtd++;
 }
 
-Pessoa* pop(Pilha* pilha){
+tCelula* pop(Pilha* pilha){
     if (vazia_pilha (pilha))
     {
         return NULL;
     }
 
-    Pessoa* p = NULL;
+    tCelula* p = NULL;
 
-    p = pilha->topo->pessoa;
+    *p = pilha->topo;
     pilha->topo = pilha->topo->prox;
     pilha->qtd--;
 
     return p;
 }
 
-void destroi_pessoa(Celula* p){
+void destroi_pessoa(Pessoa* p){
     if (p != NULL)
     {
        free(p->nome);
        free(p->end);
        free(p);
+    }
+}
+
+void destroi_celula(tCelula *c)
+{
+    if (c != NULL)
+    {
+        destroi_pessoa(&c->pessoa);
     }
 }
 
@@ -72,16 +87,6 @@ int vazia_pilha (Pilha* pilha){
 
 int tamanho_pilha (Pilha* p){
    return p->qtd;
-}
-
-tCelula *inicializaCelula(char* nome, int idade, char* endereco){
-	tCelula* p = (tCelula*) malloc (sizeof(tCelula));
-	p->idade = idade;
-	p->end = (char*)malloc((strlen(endereco)+1)*sizeof(char));
-	strcpy (p->end, endereco);
-	p->nome = (char*)malloc((strlen(nome)+1)*sizeof(char));
-	strcpy (p->nome, nome);
-	return p;
 }
 
 void imprimeCelula(tCelula *celula)
@@ -108,6 +113,18 @@ void imprime_pilha(tPilha *pilha)
     }
 }
 
+/*
+tCelula *inicializaCelula(char* nome, int idade, char* endereco){
+	tCelula* p = (tCelula*) malloc (sizeof(tCelula));
+	p->idade = idade;
+	p->end = (char*)malloc((strlen(endereco)+1)*sizeof(char));
+	strcpy (p->end, endereco);
+	p->nome = (char*)malloc((strlen(nome)+1)*sizeof(char));
+	strcpy (p->nome, nome);
+	return p;
+}
+
 int retorna_idade (Pessoa* p){
     return p->idade;
 }
+*/
