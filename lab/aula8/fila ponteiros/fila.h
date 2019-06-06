@@ -1,15 +1,20 @@
 #ifndef FILA_H_
 #define FILA_H_
 
-#include "pilha.h"
-
 /*Tipo que define a fila (tipo opaco)
   Estrutura interna do tipo deve ser definida na implementa��o do TAD. Usar como base o TAD Pilha (pilha.h) - n�o usar outra estrutura de dados
   */
+typedef struct celula
+{
+    tPessoa pessoa;
+    struct celula *prox;
+} tCelula;
+
 typedef struct fila
 {
-    Pilha *principal;
-    Pilha *aux;
+    tCelula *cabeça;
+    tCelula *ultima;
+    int qtd;
 } Fila;
 
 /*Cria uma fila vazia, usando pilha

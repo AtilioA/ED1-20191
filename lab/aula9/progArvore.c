@@ -14,7 +14,7 @@ int main(){
     printf("Dados inseridos na arvore.\n");
 
     //Alterar o valor de p para testar valores que existem e não
-    int p = 36;
+    int p = 35;
     if (consulta_ArvBin(raiz, p))
     {
 	    printf("Achou o elemento %d\n",p);
@@ -24,15 +24,15 @@ int main(){
 	    printf("Elemento %d nao encontrado\n", p);
     }
 
+    emOrdem_ArvBin(raiz);
+    printf("\n");
+    preOrdem_ArvBin(raiz);
+    printf("\n");
+    posOrdem_ArvBin(raiz);
+    printf("\n");
 
-    // emOrdem_ArvBin(raiz);
-    // printf("\n");
-    // preOrdem_ArvBin(raiz);
-    // printf("\n");
-    // posOrdem_ArvBin(raiz);
-    // printf("\n");
-
-    // libera_ArvBin(raiz);
+    libera_ArvBin(raiz);
+    free(raiz);
 
     return 0;
 }

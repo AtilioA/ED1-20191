@@ -8,7 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "fila.h"
-#include "pilha.h"
 
 int main()
 {

@@ -1,12 +1,19 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "fila.h"
-#include "pilha.h"
+
+tCelula *criaCelula()
+{
+    tCelula *nova;
+    nova->pessoa = NULL;
+    nova
+}
 
 Fila* cria_fila()
 {
     Fila *nova = (Fila *)malloc(sizeof(Fila));
-    nova->principal = cria_pilha();
-    nova->aux = cria_pilha();
+    nova->cabeca = criaCelula();
+    nova->ultimo = criaCelula();
 
     return nova;
 }

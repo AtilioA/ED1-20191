@@ -12,12 +12,8 @@ typedef struct NO
 ArvBin* cria_ArvBin()
 {
     ArvBin *nova = (ArvBin *)malloc(sizeof(ArvBin));
-
-    // (*nova)->info = -1;
-    // (*nova)->esq == NULL;
-    // (*nova)->dir == NULL;
-
-    return nova;
+    (*nova) = NULL;
+    r is a Vim emulator for Visual Studio Code.eturn nova;
 }
 
 int insere_ArvBin(ArvBin* raiz, int valor)
@@ -79,50 +75,59 @@ int insere_ArvBin(ArvBin* raiz, int valor)
     }
 }
 
-// int insere_ArvBin2(ArvBin* raiz, int valor){
-//     if(raiz == NULL){
-//         return 0;
-//     }
-//     NO* novo = malloc(sizeof(NO));
-//     novo->dir = NULL;
-//     novo->esq = NULL;
-//     novo->info = valor;
-//     NO* aux = (*raiz);
-//     if((*raiz) == NULL){
-//         (*raiz) = novo;
-//         return 1;
-//     }else{
-//         while(aux->esq != NULL || aux->dir != NULL ){
-//             if(valor < aux->info){
-//                 if(aux->esq == NULL){
-//                     break;
-//                 }
-//                 aux = aux->esq;
-//             }else{
-//                 if(aux->dir == NULL){
-//                     break;
-//                 }
-//                 aux = aux->dir;
-//             }
-//         }
+/** Imprime em pre-ordem */
+void preOrdem_ArvBin(ArvBin *raiz)
+{
+    if (raiz != NULL)
+    {
+        printf("%d\n", (*raiz)->info);
+        if((*raiz)->esq != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->esq));
+        }
+        if((*raiz)->dir != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->dir));
+        }
+    }
+}
 
-//         if(valor < aux->info){
-//             aux->esq = novo;
-//         }else{
-//             aux->dir = novo;
-//         }
-//         return 1;
-//     }
-// }
+/** Imprime em-ordem */
+void emOrdem_ArvBin(ArvBin *raiz)
+{
+    if (raiz != NULL)
+    {
+        if((*raiz)->esq != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->esq));
+        }
+        printf("%d\n", (*raiz)->info);
+        if((*raiz)->dir != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->dir));
+        }
+    }
+}
 
+/** Imprime em pós-ordem */
+void posOrdem_ArvBin(ArvBin *raiz)
+{
+    if (raiz != NULL)
+    {
+        if((*raiz)->esq != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->esq));
+        }
+        if((*raiz)->dir != NULL)
+        {
+            preOrdem_ArvBin(&((*raiz)->dir));
+        }
+        printf("%d\n", (*raiz)->info);
+    }
+}
 
 int consulta_ArvBin(ArvBin* raiz, int valor)
 {
-    NO *novo = malloc(sizeof(NO));
-    novo->esq = NULL;
-    novo->dir = NULL;
-    novo->info = valor;
-
     NO *aux = (*raiz);
     if (raiz != NULL)
     {
@@ -151,23 +156,28 @@ int consulta_ArvBin(ArvBin* raiz, int valor)
         }
 
         return 0;
-        // if (valor < aux->info)
-        // {
-        //     aux->esq = novo;
-        //     return 1;
-        // }
-        // else if (valor > aux->info)
-        // {
-        //     aux->dir = novo;
-        //     return 1;
-        // }
-
     }
     else
     {
-        *raiz = novo;
         return 1;
     }
 
     return 0;
+}
+
+/** Libera em pós-ordem */
+void libera_ArvBin(ArvBin *raiz)
+{
+    if (raiz != NULL)
+    {
+        if((*raiz)->esq != NULL)
+        {
+            libera_ArvBin(&((*raiz)->esq));
+        }
+        if((*raiz)->dir != NULL)
+        {
+            libera_ArvBin(&((*raiz)->dir));
+        }
+        free((*raiz));
+    }
 }
