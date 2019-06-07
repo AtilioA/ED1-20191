@@ -112,7 +112,7 @@ void imprime_pilha (Pilha* pilha){
 
 }
 
-void imprimepessoa(Pessoa* p){
+void imprimePessoa(Pessoa* p){
 		printf ("Pessoa: %s\n", p->nome);
 		printf ("Idade: %d\n", p->idade);
 		printf ("Endereco: %s\n", p->end);

@@ -12,69 +12,75 @@
 int main()
 {
      // criando a fila vazia
+    printf("Criando fila...\n");
     Fila* f = cria_fila();
+    printf("Fila criada.\n");
     // tentando imprimir a fila (ainda vazia neste momento)
+    printf("Imprimindo fila...\n");
     imprime_fila(f);
+
+    printf("Inicializando celulas...\n");
+     // criando algumas celulas apenas para testar (mais adequado seria carregar de um arquivo)
+    tCelula* celula1 = inicializaC("celula1", 51, "rua da celula1");
+    // tCelula* celula2= inicializaC("celula2", 63, "rua da celula2");
+    // tCelula* celula3= inicializaC("celula3", 10, "rua da celula3");
+    // tCelula* celula4= inicializaC("celula4", 70, "rua da celula4");
+    // tCelula* celula5= inicializaC("celula5", 20, "rua da celula5");
+    // tCelula* celula6= inicializaC("celula6", 30, "rua da celula6");
+    // tCelula* celula7= inicializaC("celula7", 40, "rua da celula7");
+    // tCelula* celula8= inicializaC("celula8", 45, "rua da celula8");
+    // tCelula* celula9= inicializaC("celula9", 65, "rua da celula9");
+    // tCelula* celula10= inicializaC("celula10", 67, "rua da celula10");
+    // tCelula* celula11= inicializaC("celula11", 13, "rua da celula11");
+    printf("Inicializacao concluida.\n");
+
+    //Insere os celulas na fila
+    printf("Inserindo na fila...\n");
+    insere(celula1, f);
+    // insere(celula2, f);
+    // insere(celula3, f);
+    // insere(celula4, f);
+    // insere(celula5, f);
+    // insere(celula6, f);
+    // insere(celula7, f);
+    // insere(celula8, f);
+    // insere(celula9, f);
+    // insere(celula10, f);
+    // insere(celula11, f);
+    printf("Insercao concluida.\n");
     /*
-
-     // criando algumas pessoas apenas para testar (mais adequado seria carregar de um arquivo)
-    Pessoa* pessoa1= inicializaPessoa("pessoa1", 51, "rua da pessoa1");
-    Pessoa* pessoa2= inicializaPessoa("pessoa2", 63, "rua da pessoa2");
-    Pessoa* pessoa3= inicializaPessoa("pessoa3", 10, "rua da pessoa3");
-    Pessoa* pessoa4= inicializaPessoa("pessoa4", 70, "rua da pessoa4");
-    Pessoa* pessoa5= inicializaPessoa("pessoa5", 20, "rua da pessoa5");
-    Pessoa* pessoa6= inicializaPessoa("pessoa6", 30, "rua da pessoa6");
-    Pessoa* pessoa7= inicializaPessoa("pessoa7", 40, "rua da pessoa7");
-    Pessoa* pessoa8= inicializaPessoa("pessoa8", 45, "rua da pessoa8");
-    Pessoa* pessoa9= inicializaPessoa("pessoa9", 65, "rua da pessoa9");
-    Pessoa* pessoa10= inicializaPessoa("pessoa10", 67, "rua da pessoa10");
-    Pessoa* pessoa11= inicializaPessoa("pessoa11", 13, "rua da pessoa11");
-
-    //Insere os pessoas na fila
-    insere(pessoa1, f);
-    insere(pessoa2, f);
-    insere(pessoa3, f);
-    insere(pessoa4, f);
-    insere(pessoa5, f);
-    insere(pessoa6, f);
-    insere(pessoa7, f);
-    insere(pessoa8, f);
-    insere(pessoa9, f);
-    insere(pessoa10, f);
-    insere(pessoa11, f);
-
     printf ("---------- Imprime fila-----------\n");
-    //Imprime a fila com todas as pessoas
+    //Imprime a fila com todas as celulas
     imprime_fila(f);
     */
-    // // Retira pessoa1 do inicio da fila
-    // Pessoa* retirado = retira (f);
-    // // Insere pessoa1 no final da fila
+    // // Retira celula1 do inicio da fila
+    // tCelula* retirado = retira (f);
+    // // Insere celula1 no final da fila
     // insere (retirado, f);
-    // // Retira pessoa2 do inicio da fila
+    // // Retira celula2 do inicio da fila
     // retirado = retira (f);
-    // // Insere pessoa2 no final da fila
+    // // Insere celula2 no final da fila
     // insere (retirado, f);
-    // // Retira pessoa3 do inicio da fila
+    // // Retira celula3 do inicio da fila
     // retirado = retira (f);
-    // // Insere pessoa3 no final da fila
+    // // Insere celula3 no final da fila
     // insere (retirado, f);
 
     // printf ("---------- Imprime fila-----------\n");
-    // //Imprime a fila com todas as pessoas
+    // //Imprime a fila com todas as celulas
     // imprime_fila(f);
 
-    // // Retira pessoa4 do inicio da fila
+    // // Retira celula4 do inicio da fila
     // retirado = retira (f);
-    // // Insere pessoa4 no final da fila
+    // // Insere celula4 no final da fila
     // insere (retirado, f);
-    // // Retira pessoa5 do inicio da fila
+    // // Retira celula5 do inicio da fila
     // retirado = retira (f);
-    // // Insere pessoa5 no final da fila
+    // // Insere celula5 no final da fila
     // insere (retirado, f);
 
     // printf ("---------- Imprime fila-----------\n");
-    // //Imprime a fila com todas as pessoas
+    // //Imprime a fila com todas as celulas
     // imprime_fila(f);
 
     // Fila* f_maiores = cria_fila();
@@ -83,20 +89,20 @@ int main()
     // separa_filas(f, f_maiores, f_menores);
 
     // printf ("---------- Imprime fila-----------\n");
-    // //Imprime a fila com todas as pessoas
+    // //Imprime a fila com todas as celulas
     // imprime_fila(f);
 
     // printf ("---------- Imprime fila Maiores-----------\n");
-    // //Imprime a fila com todas as pessoas maiores que 60
+    // //Imprime a fila com todas as celulas maiores que 60
     // imprime_fila(f_maiores);
 
     // printf ("---------- Imprime fila Menores-----------\n");
-    // //Imprime a fila com todas as pessoas menores que 60
+    // //Imprime a fila com todas as celulas menores que 60
     // imprime_fila(f_menores);
 
     // //libera a mem�ria ocupada pela fila
     // f = destroi_fila(f);
     // f_maiores = destroi_fila(f_maiores);
     // f_menores = destroi_fila(f_menores);
-    // destroi_pessoa(pessoa11);
+    // destroi_celula(celula11);
 }

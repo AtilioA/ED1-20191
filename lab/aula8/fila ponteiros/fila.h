@@ -4,18 +4,16 @@
 /*Tipo que define a fila (tipo opaco)
   Estrutura interna do tipo deve ser definida na implementa��o do TAD. Usar como base o TAD Pilha (pilha.h) - n�o usar outra estrutura de dados
   */
-typedef struct celula
-{
-    tPessoa pessoa;
-    struct celula *prox;
-} tCelula;
+#include "pilha.h"
 
 typedef struct fila
 {
-    tCelula *cabeça;
-    tCelula *ultima;
+    tCelula *cabeca;
+    tCelula *ultimo;
     int qtd;
 } Fila;
+
+tCelula *inicializaC(char *nome, int idade, char *end);
 
 /*Cria uma fila vazia, usando pilha
 * inputs: nenhum

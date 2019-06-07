@@ -92,7 +92,7 @@ void imprime_pilha (Pilha* pilha);
 * pre-condicao: Pessoa P n�o nula
 * pos-condicao: Os dados da pessoa permanecem inalterados
 */
-void imprimepessoa(Pessoa* p);
+void imprimePessoa(Pessoa* p);
 
 
 /*Retorna a idade de uma pessoa
