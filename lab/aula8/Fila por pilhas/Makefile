@@ -1,18 +1,19 @@
 CC = gcc
 CFLAGS = -g
-DEPS = fila.h
-OBJ = fila.o progfila.o
+DEPS = fila.h pilha .h
+OBJ = fila.o pilha.o progfila.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 fila: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
+	make cleanO
 
 run: fila
 	./fila
 
-voado: fila run
+voado: fila run cleanO
 
 val:
 	valgrind -v --leak-check=full --track-origins=yes ./fila
@@ -20,5 +21,10 @@ val:
 valzin:
 	valgrind ./fila
 
-clean:
+cleanO:
 	rm -f *.o
+
+clean:
+	make cleanO
+	rm -f ${EXEC}
+	rm -f main

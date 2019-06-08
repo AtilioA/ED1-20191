@@ -5,7 +5,7 @@
 *********************************
 */
 #include <stdio.h>
-#include "fila.h"
+#include "filaPonteiro.h"
 
 int main()
 {
@@ -45,48 +45,48 @@ int main()
     insere(pessoa10, f);
     insere(pessoa11, f);
     printf("Insercao concluida.\n");
-    printf ("---------- Imprime fila-----------\n");
+    printf("---------- Imprime fila-----------\n");
     //Imprime a fila com todas as celulas
     imprimeFila(f);
     // Retira pessoa1 do inicio da fila
-    Pessoa* retirado = retira(f);
+    Pessoa *retirado = retira(f);
     // Insere pessoa1 no final da fila
-    insere (retirado, f);
+    insere(retirado, f);
     // Retira pessoa2 do inicio da fila
-    retirado = retira (f);
+    retirado = retira(f);
     // Insere pessoa2 no final da fila
-    insere (retirado, f);
+    insere(retirado, f);
     // Retira pessoa3 do inicio da fila
-    retirado = retira (f);
+    retirado = retira(f);
     // Insere pessoa3 no final da fila
-    insere (retirado, f);
+    insere(retirado, f);
     // Retira pessoa4 do inicio da fila
-    retirado = retira (f);
+    retirado = retira(f);
     // Insere pessoa4 no final da fila
-    insere (retirado, f);
+    insere(retirado, f);
     // Retira pessoa5 do inicio da fila
-    retirado = retira (f);
+    retirado = retira(f);
     // Insere pessoa5 no final da fila
-    insere (retirado, f);
+    insere(retirado, f);
 
-    printf ("---------- Imprime fila-----------\n");
+    printf("---------- Imprime fila-----------\n");
     //Imprime a fila com todas as pessoas
     imprimeFila(f);
 
-    Fila* f_maiores = cria_fila();
-    Fila* f_menores = cria_fila();
+    Fila *f_maiores = cria_fila();
+    Fila *f_menores = cria_fila();
 
     separa_filas(f, f_maiores, f_menores);
 
-    printf ("---------- Imprime fila-----------\n");
+    printf("---------- Imprime fila-----------\n");
     //Imprime a fila com todas as pessoas
     imprimeFila(f);
 
-    printf ("---------- Imprime fila Maiores-----------\n");
+    printf("---------- Imprime fila Maiores-----------\n");
     //Imprime a fila com todas as pessoas maiores que 60
     imprimeFila(f_maiores);
 
-    printf ("---------- Imprime fila Menores-----------\n");
+    printf("---------- Imprime fila Menores-----------\n");
     //Imprime a fila com todas as pessoas menores que 60
     imprimeFila(f_menores);
 

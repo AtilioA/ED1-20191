@@ -48,6 +48,7 @@ Pessoa* pop(Pilha* pilha);
 * pre-condicao: Pilha n�o � nula
 * pos-condicao: Toda memoria eh liberada
 */
+void destroi_pessoa(Pessoa* p);
 Pilha* destroi_pilha(Pilha* pilha);
 
 /*Verifica se a pilha estah vazia
