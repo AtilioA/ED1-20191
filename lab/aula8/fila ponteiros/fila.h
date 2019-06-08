@@ -4,7 +4,18 @@
 /*Tipo que define a fila (tipo opaco)
   Estrutura interna do tipo deve ser definida na implementa��o do TAD. Usar como base o TAD Pilha (pilha.h) - n�o usar outra estrutura de dados
   */
-#include "pilha.h"
+
+typedef struct pessoa{
+   char* nome;
+   char* end;
+   int idade;
+} Pessoa;
+
+typedef struct celula
+{
+    Pessoa *pessoa;
+    struct celula *prox;
+} tCelula;
 
 typedef struct fila
 {
@@ -13,7 +24,7 @@ typedef struct fila
     int qtd;
 } Fila;
 
-tCelula *inicializaC(char *nome, int idade, char *end);
+void destroiPessoa(Pessoa* p);
 
 /*Cria uma fila vazia, usando pilha
 * inputs: nenhum
@@ -27,7 +38,7 @@ Fila* cria_fila(void);
 * output: nenhum
 * pre-condicao: pessoa e fila n�o s�o nulos
 * pos-condicao: fila cont�m a pessoa inserida na ultima posi��o*/
-void insere (tCelula *celula, Fila* f);
+void insere(Pessoa* pessoa, Fila *fila);
 
 /*Retira uma pessoa da fila (usando FIFO). Imprime mensagem de erro caso a fila esteja vazia.
 * inputs: a fila
@@ -43,8 +54,7 @@ Pessoa* retira (Fila* f);
 * pre-condicao: fila n�o � nula
 * pos-condicao: dados dos pessoas impressos na saida padrao
 */
-void imprime_fila (Fila* f);
-
+void imprimeFila(Fila *fila);
 
 /*Verifica se a fila esta ou nao vazia
 * inputs: a fila de pessoas
@@ -70,5 +80,8 @@ void separa_filas (Fila* f, Fila* f_maiores, Fila* f_menores);
 * pos-condicao: Mem�ria liberada */
 Fila* destroi_fila (Fila* f);
 
+int retorna_idade(Pessoa *pessoa);
+void imprimePessoa(Pessoa *p);
+Pessoa* inicializaPessoa(char* nome, int idade, char* endereco);
 
 #endif /* FILA_H_ */

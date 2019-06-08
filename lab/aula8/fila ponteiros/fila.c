@@ -2,111 +2,138 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fila.h"
-#include "pilha.h"
 
-Pessoa inicializaPessoa(char* nome, int idade, char* endereco)
-{
-	Pessoa p;
-
-	p.idade = idade;
-	p.end = (char*)malloc((strlen(endereco)+1)*sizeof(char));
-	strcpy (p.end, endereco);
-	p.nome = (char*)malloc((strlen(nome)+1)*sizeof(char));
-	strcpy (p.nome, nome);
-
-	return p;
-}
-
-tCelula *inicializaC(char *nome, int idade, char *end)
-{
-    tCelula *nova;
-
-    nova->pessoa = inicializaPessoa(nome, idade, end);
-    nova->prox = NULL;
-    return nova;
-}
-
-Fila* cria_fila()
+Fila *cria_fila(void)
 {
     Fila *nova = (Fila *)malloc(sizeof(Fila));
-    nova->cabeca = NULL;
-    nova->ultimo = NULL;
+    if (nova == NULL)
+    {
+        return NULL;
+    }
+
+    nova->qtd = 0;
+    nova->cabeca = nova->ultimo = NULL;
 
     return nova;
 }
 
-void insere(tCelula* celula, Fila *fila)
+tCelula *inicializaCelula(Pessoa *p)
 {
-    if (fila != NULL && celula != NULL)
+    if (p == NULL)
     {
-        celula->prox = NULL;
-        fila->ultimo->prox = celula->prox;
-        fila->ultimo = celula;
+        return NULL;
+    }
+
+    tCelula *nova = (tCelula *)malloc(sizeof(tCelula));
+    if (nova == NULL)
+    {
+        return NULL;
+    }
+
+    nova->pessoa = p;
+    nova->prox = NULL;
+
+    return nova;
+}
+
+void insere(Pessoa *pessoa, Fila *fila)
+{
+    if (fila != NULL && pessoa != NULL)
+    {
+        tCelula *nova = (tCelula *)malloc(sizeof(tCelula));
+        nova->pessoa = pessoa;
+        nova->prox = NULL;
+
+        if (fila->qtd == 0)
+        {
+            fila->cabeca = nova;
+            fila->ultimo = fila->cabeca;
+        }
+        else
+        {
+            fila->ultimo->prox = nova;
+            fila->ultimo = nova;
+        }
+
         fila->qtd++;
     }
 }
 
-Pessoa* retira (Fila* fila)
+Pessoa *retira(Fila *fila)
 {
     if (fila != NULL)
     {
-        Pessoa* retirada;
+        Pessoa *retirada = fila->cabeca->pessoa;
+        tCelula *celula = fila->cabeca;
 
-        retirada = &(fila->cabeca->prox->pessoa);
-        fila->cabeca->prox = fila->cabeca->prox->prox;
+        fila->cabeca = fila->cabeca->prox;
+        free(celula);
+
+        fila->qtd--;
 
         return retirada;
-	}
+    }
 
     return NULL;
 }
 
-Fila* destroi_fila(Fila* fila){
-    if (fila != NULL)
+void destroiPessoa(Pessoa *p)
+{
+    if (p != NULL)
     {
-        tCelula *anterior = fila->cabeca;
-        tCelula *atual = fila->cabeca->prox;
-        while (atual != NULL) // CUIDADO AQUI
-        {
-            free(anterior);
-            atual = atual->prox;
-            anterior = atual;
-        }
-        free(fila);
+        free(p->nome);
+        free(p->end);
+        free(p);
     }
+}
+
+Fila *destroi_fila(Fila *fila)
+{
+    if (fila == NULL)
+    {
+        return NULL;
+    }
+
+    while (fila->cabeca != NULL)
+    {
+        destroiPessoa(retira(fila));
+    }
+    fila->qtd = -1;
+    free(fila);
+
+    return fila;
 }
 
 int Vazia_fila(Fila *fila)
 {
-    return fila->qtd == 0;
+    return (fila->qtd == 0);
 }
 
-void imprime_fila(Fila *fila)
+void imprimeFila(Fila *fila)
 {
-    if (fila != NULL && fila->qtd > 0)
+    if (fila != NULL)
     {
         tCelula *aux = fila->cabeca;
 
         while (aux != NULL)
         {
-            printf("foi\n");
-            // imprimePessoa(aux->pessoa);
+            imprimePessoa(aux->pessoa);
             aux = aux->prox;
         }
     }
 }
 
-/*
-void separa_filas(Fila* f, Fila* f_maiores, Fila* f_menores)
+void separa_filas(Fila *f, Fila *f_maiores, Fila *f_menores)
 {
-    if(f != NULL || f_maiores != NULL || f_menores != NULL)
+    if (f != NULL || f_maiores != NULL || f_menores != NULL)
     {
         Pessoa *p;
 
-        while(!vazia_pilha(f->principal))
+        while (!Vazia_fila(f))
         {
             p = retira(f);
-            if(retorna_idade(p) > 60)
+
+            if (retorna_idade(p) > 60)
             {
                 insere(p, f_maiores);
             }
@@ -118,4 +145,26 @@ void separa_filas(Fila* f, Fila* f_maiores, Fila* f_menores)
     }
 }
 
-*/
+Pessoa *inicializaPessoa(char *nome, int idade, char *endereco)
+{
+    Pessoa *p = (Pessoa *)malloc(sizeof(Pessoa));
+    p->idade = idade;
+    p->end = (char *)malloc((strlen(endereco) + 1) * sizeof(char));
+    strcpy(p->end, endereco);
+    p->nome = (char *)malloc((strlen(nome) + 1) * sizeof(char));
+    strcpy(p->nome, nome);
+    return p;
+}
+
+void imprimePessoa(Pessoa *p)
+{
+    printf("Pessoa: %s\n", p->nome);
+    printf("Idade: %d\n", p->idade);
+    printf("Endereco: %s\n", p->end);
+    printf("\n");
+}
+
+int retorna_idade(Pessoa *pessoa)
+{
+    return pessoa->idade;
+}
