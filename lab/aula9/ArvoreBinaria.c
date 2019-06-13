@@ -7,24 +7,24 @@ typedef struct NO
     int info;
     struct NO *esq;
     struct NO *dir;
-} NO;
+} tNo;
 
 ArvBin* cria_ArvBin()
 {
     ArvBin *nova = (ArvBin *)malloc(sizeof(ArvBin));
     (*nova) = NULL;
-    r is a Vim emulator for Visual Studio Code.eturn nova;
+    return nova;
 }
 
 int insere_ArvBin(ArvBin* raiz, int valor)
 {
     if (raiz != NULL)
     {
-        NO *novo = malloc(sizeof(NO));
+        tNo *novo = malloc(sizeof(tNo));
         novo->esq = NULL;
         novo->dir = NULL;
         novo->info = valor;
-        NO *aux = (*raiz);
+        tNo *aux = (*raiz);
 
         if ((*raiz) == NULL)
         {
@@ -128,7 +128,7 @@ void posOrdem_ArvBin(ArvBin *raiz)
 
 int consulta_ArvBin(ArvBin* raiz, int valor)
 {
-    NO *aux = (*raiz);
+    tNo *aux = (*raiz);
     if (raiz != NULL)
     {
         while(aux->esq != NULL || aux->dir != NULL)
