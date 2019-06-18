@@ -1,59 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "ArvoreAVL.h"
 
-int main(){
-    ArvAVL* avl;
-    int res,i;
-    //int N = 10, dados[10] = {50,25,10,5,7,3,30,20,8,15};
-    //int N = 11, dados[11] = {50,25,10,5,5,7,3,30,20,8,15};
-    int N = 10, dados[10] = {1,2,3,10,4,5,9,7,8,6};
+int main(int argc, char* argv[]){
+    int N;
 
-    avl = cria_ArvAVL();
+    
+   int total; 
 
-    for(i=0;i<N;i++){
-        //printf("========================\n");
-        //printf("Inserindo: %d\n",dados[i]);
-        res = insere_ArvAVL(avl,dados[i]);
-        //printf("\n\nres = %d\n",res);
-        //preOrdem_ArvAVL(avl);
-        //printf("\n\n");
+    if(argc != 2){
+   	 printf("Parametros incorretos. Use os parametros: "
+   	 "<qtd de elementos a buscar>  \n");
+   	 return -1;
+  	}
+    
+    ArvAVL* raiz = cria_ArvAVL();
+   
+    int qtdBusca = atoi(argv[1]);
+
+    int j=0;
+    scanf("%d", &total);
+    int *aux =  malloc(sizeof(int)*(total+1));
+
+    clock_t t; 
+    t = clock(); 
+    while ( 1 == scanf("%d", &N)  ){
+        aux[j]= N;
+        j++;
+        insere_ArvAVL(raiz,N);
+	
+   }
+    t = clock() - t; 
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+    
+
+    printf("%f ", time_taken);
+
+//    srand(time(0));
+    srand(100);
+    t = clock(); 
+    for(j =0; j < qtdBusca; j++){
+	consulta_ArvAVL(raiz,aux[rand() % total]);	
     }
-//
-    printf("\nAVL tree:\n");
-    emOrdem_ArvAVL(avl);
-    printf("\n\n");
-//
-//    int NR = 4, dadosR[4] = {7,51,3,5};
-//    for(i=0;i<NR;i++){
-//        printf("\nRemovendo: %d\n",dadosR[i]);
-//        res = remove_ArvAVL(avl,dadosR[i]);
-//        printf("\n\nres = %d\n",res);
-//        preOrdem_ArvAVL(avl);
-//        //printf("\n\n");
-//    }
-//
-//    printf("\nAVL tree:\n");
-//    preOrdem_ArvAVL(avl);
-//    printf("\n\n");
+    t = clock() - t; 
+    time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
 
-    remove_ArvAVL(avl,6);
-    printf("\nAVL tree:\n");
-    emOrdem_ArvAVL(avl);
-    printf("\n\n");
-
-    remove_ArvAVL(avl,7);
-    printf("\nAVL tree:\n");
-    emOrdem_ArvAVL(avl);
-    printf("\n\n");
-
-    remove_ArvAVL(avl,4);
-    printf("\nAVL tree:\n");
-    emOrdem_ArvAVL(avl);
-    printf("\n\n");
-
-    libera_ArvAVL(avl);
-
-
+    printf("%f\n", time_taken);
+    free(aux);  
+   libera_ArvAVL(raiz);
     return 0;
+
 }

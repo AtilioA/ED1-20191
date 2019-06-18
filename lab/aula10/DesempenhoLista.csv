@@ -1,0 +1,8 @@
+N,BUSCA,Tempo de inserção (média com 10 execuções),Tempo de procura (média com 10 execuções),Tipo
+100,10000,"","",rand
+100,10000,"","",rand
+100,10000,"","",rand
+100,10000,"0,00001420000000000000","0,00153330000000000000",rand
+100,100000000,"0,00001540000000000000","15,20862590000000000000",rand
+,input/input_rand_1000.txt,"","",seq
+,input/input_rand_1000.txt,"","",seq
