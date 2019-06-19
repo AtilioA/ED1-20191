@@ -50,7 +50,7 @@ Produto  criaProduto(int cod);
 
 void ImprimeProduto(Produto p);
 
-
+void libera_lista(TipoLista *Lista);
 
 
 #endif /* LISTAENC_H_ */

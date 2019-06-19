@@ -72,7 +72,7 @@ void ImprimeLista(TipoLista Lista)
   Aux = Lista.Primeiro -> Prox;
   while (Aux != NULL)
     {
-    //   ImprimeProduto(Aux -> Item);
+      ImprimeProduto(Aux -> Item);
       Aux = Aux -> Prox;
     }
 }
@@ -85,6 +85,16 @@ Produto  criaProduto(int cod)
    Produto p;
    p.codigo = cod;
    return p;
+}
+
+void libera_lista(TipoLista *Lista){
+    TipoCelula *aux = Lista -> Primeiro;
+    TipoCelula *aux2 = NULL;
+    while(aux != NULL){
+        aux2 = aux;
+        aux = aux -> Prox;
+        free(aux2);
+    }
 }
 
 void ImprimeProduto(Produto p)
