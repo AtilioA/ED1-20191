@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+
 #include "ArvoreAVL.h" //inclui os Prot�tipos
 
 struct NO{
