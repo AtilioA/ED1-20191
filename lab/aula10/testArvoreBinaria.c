@@ -33,10 +33,9 @@ int main(int argc, char *argv[ ]){
    }
     t = clock() - t; 
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
-    emOrdem_ArvBin(raiz);
     
 
-    printf("Carregar: %f sec\n", time_taken);
+    printf("%f ", time_taken);
 
 //    srand(time(0));
     srand(100);
@@ -47,8 +46,8 @@ int main(int argc, char *argv[ ]){
     t = clock() - t; 
     time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
 
-    printf("Qtd pesquisa %d: %f sec\n", qtdBusca, time_taken);
-  
+    printf("%f\n", time_taken);
+    free(aux);  
    libera_ArvBin(raiz);
     return 0;
 }
