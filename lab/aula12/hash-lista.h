@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <string.h>
-#define M 256
+#define M 97
 #define N 20
 #define TAMALFABETO 256
 

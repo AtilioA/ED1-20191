@@ -4,26 +4,6 @@
 #include <string.h>
 #include "hash-lista.h"
 
-
-/* typedef unsigned int  TipoPesos[n]; */
-// typedef char TipoChave[N];
-// typedef unsigned TipoPesos[N][TAMALFABETO];
-// typedef struct TipoItem
-// {
-//     /* outros componentes */
-//     TipoChave Chave;
-// } TipoItem;
-// typedef unsigned int TipoIndice;
-// typedef struct TipoCelula* TipoApontador;
-// typedef struct TipoCelula {
-//   TipoItem Item;
-//   TipoApontador Prox;
-// } TipoCelula;
-// typedef struct TipoLista {
-//   TipoCelula *Primeiro, *Ultimo;
-// } TipoLista;
-// typedef TipoLista TipoDicionario[M];
-
 void FLVazia(TipoLista *Lista)
 { Lista->Primeiro = (TipoCelula *)malloc(sizeof(TipoCelula));
   Lista->Ultimo = Lista->Primeiro; Lista->Primeiro->Prox = NULL;
