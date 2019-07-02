@@ -15,60 +15,70 @@ LinkedList *create_Queue()
 
 void enqueue(LinkedList *queue, int item)
 {
-    if (queue->head == NULL)
+    if (queue != NULL)
     {
-        queue->head = (Element *)malloc(sizeof(Element));
-        queue->head->data = item;
-        queue->head->next = NULL;
+        if (queue->head == NULL)
+        {
+            queue->head = (Element *)malloc(sizeof(Element));
+            queue->head->data = item;
+            queue->head->next = NULL;
 
-        queue->tail = queue->head;
-
-        queue->size++;
-
-    }
-    else
-    {
-        Element *new = (Element *)malloc(sizeof(Element));
-        new->data = item;
-        new->next = NULL;
-        queue->tail->next = new;
-        queue->tail = queue->tail->next;
+            queue->tail = queue->head;
+        }
+        else
+        {
+            Element *new = (Element *)malloc(sizeof(Element));
+            new->data = item;
+            new->next = NULL;
+            queue->tail->next = new;
+            queue->tail = queue->tail->next;
+        }
         queue->size++;
     }
 }
 
 void dequeue(LinkedList *queue, int *dequeued)
 {
-    if (queue->head != NULL)
+    if (queue != NULL && queue->size != -1 && queue->head != NULL)
     {
         Element *aux = queue->head;
         queue->head = queue->head->next;
 
         *dequeued = aux->data;
         free(aux);
+
+        queue->size--;
     }
 }
 
 void print_Queue(LinkedList *queue)
 {
-    Element *aux = queue->head;
-
-    while (aux != NULL)
+    if (queue != NULL && queue->size != -1 && queue->head != NULL)
     {
-        printf("%i\n", aux->data);
-        aux = aux->next;
+        Element *aux = queue->head;
+
+        while (aux != NULL)
+        {
+            printf("%i\n", aux->data);
+            aux = aux->next;
+        }
+        printf("Queue size: %i", queue->size);
     }
 }
 
 void free_Queue(LinkedList *queue)
 {
-    Element *current = queue->head;
-    Element *previous;
-    while (queue->head != NULL)
+    if (queue != NULL && queue->size != -1 && queue->head != NULL)
     {
-        previous = current;
-        current = current->next;
-        free(previous);
+        Element *current = queue->head;
+        Element *previous;
+        while (current != NULL)
+        {
+            previous = current;
+            current = current->next;
+            free(previous);
+        }
+        queue->size = -1;
+        free(queue);
     }
-    free(queue);
 }

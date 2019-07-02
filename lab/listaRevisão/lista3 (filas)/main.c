@@ -32,8 +32,8 @@ int main()
     printf("\nPrinting queue:\n");
     print_Queue(queue);
 
-    // free_Queue(queue);
-    // printf("Queue freed.\n");
+    free_Queue(queue);
+    printf("\nQueue freed.\n");
 
     return 0;
 }

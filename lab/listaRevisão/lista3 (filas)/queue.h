@@ -1,5 +1,9 @@
 /* Linked list implementation of queue */
 
+#ifndef __QUEUE_H_
+#define __QUEUE_H_
+
+
 typedef struct Element
 {
     int data;
@@ -13,8 +17,12 @@ typedef struct LinkedList
     int size;
 } LinkedList;
 
-LinkedList *create_Queue();
-void print_Queue(LinkedList *queue);
-void enqueue(LinkedList *queue, int item);
-void dequeue(LinkedList *queue, int *dequeued);
-void free_Queue(LinkedList *queue);
+typedef LinkedList Queue;
+
+Queue *create_Queue();
+void print_Queue(Queue *queue);
+void enqueue(Queue *queue, int item);
+void dequeue(Queue *queue, int *dequeued);
+void free_Queue(Queue *queue);
+
+#endif
