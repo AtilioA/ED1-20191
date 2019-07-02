@@ -1,7 +1,6 @@
 #ifndef HASH_H_
 #define HASH_H_
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
@@ -16,30 +15,32 @@ typedef char TipoChave[N];
 
 typedef unsigned TipoPesos[N][TAMALFABETO];
 
-typedef struct TipoItem {
-  /* outros componentes */
-  TipoChave Chave;
+typedef struct TipoItem
+{
+    /* outros componentes */
+    TipoChave Chave;
 } TipoItem;
 
 typedef unsigned int TipoIndice;
 
-typedef struct TipoCelula* TipoApontador;
-typedef struct TipoCelula {
-  TipoItem Item;
-  int qtd;
-  TipoApontador Prox;
+typedef struct TipoCelula *TipoApontador;
+typedef struct TipoCelula
+{
+    TipoItem Item;
+    int qtd;
+    TipoApontador Prox;
 } TipoCelula;
 
-typedef struct TipoLista {
-  TipoCelula *Primeiro, *Ultimo;
-  int tamanho;
-  int colisoes;
+typedef struct TipoLista
+{
+    TipoCelula *Primeiro, *Ultimo;
+    int tamanho;
+    int colisoes;
 } TipoLista;
 
 typedef TipoLista TipoDicionario[M];
 
 void FLVazia(TipoLista *Lista);
-
 
 short Vazia(TipoLista Lista);
 
@@ -47,10 +48,10 @@ void Ins(TipoItem x, TipoLista *Lista);
 
 void Ret(TipoApontador p, TipoLista *Lista, TipoItem *Item);
 
-
 void GeraPesos(TipoPesos p);
 
-TipoIndice h(TipoChave Chave, TipoPesos p);
+TipoIndice hash(TipoChave Chave, TipoPesos p);
+// unsigned long hash(TipoChave chave, TipoPesos p);
 
 void Inicializa(TipoDicionario T);
 
@@ -63,7 +64,6 @@ void Retira(TipoItem x, TipoPesos p, TipoDicionario T);
 void Imp(TipoLista Lista);
 
 void Imprime(TipoDicionario Tabela);
-
 
 int n_elementos(TipoDicionario tabela);
 int n_colisoes(TipoDicionario tabela);
