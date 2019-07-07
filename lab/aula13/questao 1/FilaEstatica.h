@@ -1,9 +1,19 @@
 //Arquivo FilaEstatica.h
 #define MAX 4
-struct aluno{
+
+struct aluno
+{
     int matricula;
     char nome[30];
-    float n1,n2,n3;
+    float n1, n2, n3;
+};
+
+//Defini��o do tipo Fila
+struct fila
+{
+    int inicio, final;
+    int qtd;
+    struct aluno dados[MAX];
 };
 
 typedef struct fila Fila;
@@ -15,25 +25,24 @@ typedef struct aluno Aluno;
 * output: fila alocada e vazia
 * pre-condicao: nao tem
 * pos-condicao: fila alocada e vazia*/
-Fila* cria_Fila();
-void libera_Fila(Fila* fi);
+Fila *cria_Fila();
+void libera_Fila(Fila *fi);
 /* Consulta o primeiro da fila
 * inputs: fila e aluno que
 * output: true se operação ocorreu corretamente
 * pre-condicao: Fila nao vazia
 * pos-condicao: fila não alterada*/
-int consulta_Fila(Fila* fi, struct aluno *al);
+int consulta_Fila(Fila *fi, struct aluno *al);
 
 /* Consulta e remove da fila o primeiro da lista
 * inputs: fila e aluno que
 * output: true se operação ocorreu corretamente
 * pre-condicao: Fila nao vazia
 * pos-condicao: fila sem o primeiro elemento*/
-int desinfileira(Fila* fi, struct aluno *al);
+int desinfileira(Fila *fi, struct aluno *al);
 
-int insere_Fila(Fila* fi, struct aluno al);
+int insere_Fila(Fila *fi, struct aluno al);
 //int remove_Fila(Fila* fi);
-
 
 /* Retorna o tamanho da fila
 * inputs: a fila de alunos
@@ -41,7 +50,7 @@ int insere_Fila(Fila* fi, struct aluno al);
 * pre-condicao: fila não é nula
 * pos-condicao: não modifica fila
 */
-int tamanho_Fila(Fila* fi);
+int tamanho_Fila(Fila *fi);
 
 /*Verfica se a fila está vazia
 * inputs: a fila de alunos
@@ -49,7 +58,7 @@ int tamanho_Fila(Fila* fi);
 * pre-condicao: fila não é nula
 * pos-condicao: não modifica fila
 */
-int Fila_vazia(Fila* fi);
+int Fila_vazia(Fila *fi);
 
 /*Verfica se a fila está cheia
 * inputs: a fila de alunos
@@ -57,7 +66,7 @@ int Fila_vazia(Fila* fi);
 * pre-condicao: fila não é nula
 * pos-condicao: não modifica fila
 */
-int Fila_cheia(Fila* fi);
+int Fila_cheia(Fila *fi);
 
 /*Imprime os dados de todos os alunos da fila (do inicio ao fim da fila!). Imprime mensagem de fila vazia, caso a fila esteja vazia.
 * inputs: a fila de alunos
@@ -65,5 +74,9 @@ int Fila_cheia(Fila* fi);
 * pre-condicao: fila não é nula
 * pos-condicao: dados dos alunos impressos na saida padrao
 */
-void imprime_Fila(Fila* fi);
+void imprime_Fila(Fila *fi);
 
+int RemEsq(Fila *deque);
+int RemDir(Fila *deque);
+int InsEsq(Fila *deque, Aluno aluno);
+int InsDir(Fila *deque, Aluno aluno);
