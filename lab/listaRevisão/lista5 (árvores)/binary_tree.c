@@ -20,18 +20,19 @@ int insert_BinaryTree(BinaryTree *root, int data)
         new->right = NULL;
         new->data = data;
 
+        Node *aux = (*root);
         if ((*root) == NULL)
         {
             (*root) = new;
+            aux = (*root);
             return 1;
         }
 
-        Node *aux = (*root);
         while (aux->left != NULL || aux->right != NULL)
         {
             if (data < aux->data)
             {
-                if ((*root)->left == NULL)
+                if (aux->left == NULL)
                 {
                     break;
                 }
@@ -42,7 +43,7 @@ int insert_BinaryTree(BinaryTree *root, int data)
             }
             else if (data > aux->data)
             {
-                if ((*root)->right == NULL)
+                if (aux->right == NULL)
                 {
                     break;
                 }
@@ -66,12 +67,37 @@ int insert_BinaryTree(BinaryTree *root, int data)
         {
             aux->right = new;
         }
+        else
+        {
+            free(new);
+            return 0;
+        }
+
 
         return 1;
     }
     else
     {
         return 0;
+    }
+}
+
+void free_Node(Node *no)
+{
+    if (no != NULL)
+    {
+        free_Node(no->left);
+        free_Node(no->right);
+        free(no);
+    }
+}
+
+void free_BinaryTree(BinaryTree *raiz)
+{
+    if (raiz != NULL)
+    {
+        free_Node(*raiz);
+        free(raiz);
     }
 }
 

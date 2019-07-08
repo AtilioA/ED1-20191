@@ -15,5 +15,6 @@ int insert_BinaryTree(BinaryTree *root, int data);
 void print_pre_order_BinaryTree(BinaryTree *root);
 void print_in_order_BinaryTree(BinaryTree *root);
 void print_post_order_BinaryTree(BinaryTree *root);
+void free_BinaryTree(BinaryTree *root);
 
 #endif
