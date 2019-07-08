@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "binary_tree.h"
+#include "stack.h"
 
 BinaryTree *create_BinaryTree()
 {
@@ -55,7 +56,6 @@ int insert_BinaryTree(BinaryTree *root, int data)
             else
             {
                 printf("Data is already present in the binary tree.\n");
-                return 0;
             }
         }
 
@@ -72,7 +72,6 @@ int insert_BinaryTree(BinaryTree *root, int data)
             free(new);
             return 0;
         }
-
 
         return 1;
     }
@@ -153,4 +152,89 @@ void print_post_order_BinaryTree(BinaryTree *root)
 
         printf("%i\n", (*root)->data);
     }
+}
+
+int local_subtree(BinaryTree *a, BinaryTree *b)
+{
+    if (a == NULL || b == NULL || *a == NULL || *b == NULL)
+    {
+        return 0;
+    }
+
+    int igual_left;
+    int igual_right;
+
+    igual_left = is_subtree(&((*a)->left), &((*b)->left));
+    igual_right = is_subtree(&((*a)->right), &((*b)->right));
+
+    return (igual_left == igual_right) && ((*a)->data == (*b)->data);
+}
+
+int is_subtree(BinaryTree *a, BinaryTree *b)
+{
+    if (a == NULL || b == NULL || *a == NULL || *b == NULL)
+    {
+        return 0;
+    }
+
+    int sub = 0;
+    sub = local_subtree(a, b) || is_subtree(&((*a)->right), b) || is_subtree(&((*a)->left), b);
+
+    return sub;
+}
+
+
+void print_BinaryTree_Stack_post_order(BinaryTree *root)
+{
+    Stack *stack = create_Stack();
+    Node *aux = (*root);
+    Node *popped = (Node *)malloc(sizeof(Node));
+
+    while (aux != NULL)
+    {
+        push(stack, aux);
+        aux = aux->right;
+    }
+    // printf("Esquerda nulo.\n");
+    while (!is_empty(stack))
+    {
+        // printf("Poppando e printando...\n");
+        pop(stack, popped);
+        printf("%i\n", popped->data);
+        aux = popped->left;
+        while (aux != NULL)
+        {
+            printf("%i\n", aux->data);
+            aux = aux->left;
+        }
+    }
+}
+
+
+void print_BinaryTree_Stack_in_order(BinaryTree *root)
+{
+    Stack *stack = create_Stack();
+    Node *aux = (*root);
+    Node *popped = (Node *)malloc(sizeof(Node));
+
+    while (aux != NULL)
+    {
+        push(stack, aux);
+        aux = aux->left;
+    }
+    // printf("Esquerda nulo.\n");
+    while (!is_empty(stack))
+    {
+        // printf("Poppando e printando...\n");
+        pop(stack, popped);
+        printf("%i\n", popped->data);
+        aux = popped->right;
+        while (aux != NULL)
+        {
+            printf("%i\n", aux->data);
+            aux = aux->right;
+        }
+    }
+    free_Stack(stack);
+    free(popped);
 }

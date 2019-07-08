@@ -12,34 +12,38 @@ Stack *create_Stack()
     return new;
 }
 
+int is_empty(Stack *stack)
+{
+    return stack->size == 0;
+}
 
-void push(Stack *stack, int data)
+void push(Stack *stack, Node *node)
 {
     if (stack->head == NULL)
     {
         stack->head = (Element *)malloc(sizeof(Element));
-        stack->head->data = data;
+        stack->head->node = node;
         stack->head->next = NULL;
     }
     else
     {
         Element *aux = stack->head;
         Element *new = (Element *)malloc(sizeof(Element));
-        new->data = data;
+        new->node = node;
         stack->head = new;
         stack->head->next = aux;
     }
     stack->size++;
 }
 
-void pop(Stack *stack, int *popped)
+void pop(Stack *stack, Node *popped)
 {
     if (stack->head != NULL)
     {
         Element *aux = stack->head;
         stack->head = stack->head->next;
 
-        *popped = aux->data;
+        *popped = *(aux->node);
         free(aux);
         stack->size--;
     }
@@ -53,7 +57,7 @@ void print_Stack(Stack *stack)
 
         while (aux != NULL)
         {
-            printf("%i\n", aux->data);
+            printf("%i\n", aux->node->data);
             aux = aux->next;
         }
         printf("Stack size: %i", stack->size);
@@ -63,12 +67,13 @@ void print_Stack(Stack *stack)
 void free_Stack(Stack *stack)
 {
     Element *current = stack->head;
-    Element *previous;
+    Element *previous = NULL;
 
     while (current != NULL)
     {
         previous = current;
         current = current->next;
+        free(previous->node);
         free(previous);
     }
     stack->size = -1;
